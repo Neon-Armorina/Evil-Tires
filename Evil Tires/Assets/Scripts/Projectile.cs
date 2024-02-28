@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
             screenPosition.y < 0 ||
             screenPosition.y > cam.pixelHeight)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 1);
         }
     }
 }
