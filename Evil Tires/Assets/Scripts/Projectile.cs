@@ -16,14 +16,10 @@ public class Projectile : MonoBehaviour
         DestroyWhenOffScreen();
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.GetComponent<Enemy>())
-    //    {
-    //        Destroy(collision.gameObject);
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(gameObject);
+    }
 
     private void DestroyWhenOffScreen()
     {
