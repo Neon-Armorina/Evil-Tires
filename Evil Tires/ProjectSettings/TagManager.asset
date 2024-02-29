@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Obstacles
   - Zombie
+  - BossCar
   layers:
   - Default
   - TransparentFX

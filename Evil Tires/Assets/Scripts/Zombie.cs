@@ -25,4 +25,13 @@ public class Zombie : MonoBehaviour
             rigid.velocity = transform.up * speed;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go.tag.Equals("BossCar"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

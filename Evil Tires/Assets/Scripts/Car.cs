@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Car : MonoBehaviour
@@ -132,7 +131,7 @@ public class Car : MonoBehaviour
     IEnumerator RandomMovement()
     {
         canChange = false;
-        var timer = Random.Range(0.5f, 2.5f);
+        var timer = Random.Range(3f, 5f);
         yield return new WaitForSeconds(timer);
         ChangeDirection();
         yield return new WaitForSeconds(0.5f);
