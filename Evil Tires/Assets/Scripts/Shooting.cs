@@ -8,12 +8,14 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject projectilePrefab;
     public float projectileSpeed = 8f;
+    public AudioSource audioShoot;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
+            audioShoot.Play();
         }
     }
 
