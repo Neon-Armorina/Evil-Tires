@@ -18,6 +18,7 @@ public class Policeman : MonoBehaviour
     [Header("Set Dynamically")]
     public float stamina;
     public bool running = false;
+    public bool tireCarrying = false;
 
     private Rigidbody2D rigid;
     private Coroutine recharge;
@@ -94,6 +95,15 @@ public class Policeman : MonoBehaviour
         Vector2 lookDir = mousePos - rigid.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rigid.rotation = angle;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Tire") && !tireCarrying)
+        {
+            Destroy(collision.gameObject);
+            tireCarrying = true;
+        }
     }
 
     private IEnumerator RechargeStamina()
