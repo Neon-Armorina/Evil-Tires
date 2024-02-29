@@ -7,6 +7,7 @@ TagManager:
   - Tire
   - Car
   - PlacedTire
+  - BossTire
   layers:
   - Default
   - TransparentFX
