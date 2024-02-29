@@ -11,6 +11,7 @@ TagManager:
   - Projectile
   - Wall
   - Obstacles
+  - Zombie
   layers:
   - Default
   - TransparentFX

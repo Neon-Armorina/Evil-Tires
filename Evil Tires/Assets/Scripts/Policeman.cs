@@ -118,6 +118,10 @@ public class Policeman : MonoBehaviour
                 Invoke("SpawnDelay", 3);
             }
         }
+        else if (go.tag.Equals("Zombie"))
+        {
+            Die();
+        }
     }
 
     private IEnumerator RechargeStamina()
@@ -136,5 +140,10 @@ public class Policeman : MonoBehaviour
     void SpawnDelay()
     {
         BossCar.SetActive(true);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -12,12 +12,14 @@ public class Zombie : MonoBehaviour
 
     void Start()
     {
+        rigid = GetComponent<Rigidbody2D>();
         speed = BaseSpeed * (1 + Random.Range(-0.1f, 0.1f));
         policeman = FindObjectOfType<Policeman>();
     }
 
-    //void Update()
-    //{
-    //    transform.up = 
-    //}
+    void Update()
+    {
+        transform.up = (policeman.transform.position - transform.position).normalized;
+        rigid.velocity = transform.up * speed;
+    }
 }
