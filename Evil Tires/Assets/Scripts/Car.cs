@@ -119,6 +119,15 @@ public class Car : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Obstacles")
+        {
+            StopMoving();
+            ChangeDirection();
+        }
+    }
+
     IEnumerator RandomMovement()
     {
         canChange = false;
@@ -127,13 +136,5 @@ public class Car : MonoBehaviour
         ChangeDirection();
         yield return new WaitForSeconds(0.5f);
         canChange = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Wall")
-        {
-            ChangeDirection();
-        }
     }
 }
