@@ -43,7 +43,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5933853460740224656}
   - component: {fileID: 2698375945368092163}
-  - component: {fileID: 3140752514831980171}
   m_Layer: 0
   m_Name: Decor_car_tire_19
   m_TagString: Untagged
@@ -118,22 +117,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &3140752514831980171
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6903108245686106831}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: e947dbcf3c78db04084f95cadff4922b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: e947dbcf3c78db04084f95cadff4922b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &7126184565815705310
 GameObject:
   m_ObjectHideFlags: 0

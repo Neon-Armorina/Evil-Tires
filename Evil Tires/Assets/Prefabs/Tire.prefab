@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6431179975372667304}
   - component: {fileID: 1355240266242329575}
   - component: {fileID: 2744566716712352176}
+  - component: {fileID: 8826445619407629237}
   m_Layer: 0
   m_Name: Tire
   m_TagString: Tire
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6404d63e6733ea34c9f8d14ac6dfe94a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.4113207, g: 0.3469063, b: 0.3469063, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0026553776, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.089268245
 --- !u!114 &2744566716712352176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +134,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cf3c01f1b5b084f946c16cbd9a877a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &8826445619407629237
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463520382666479853}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b332188106b62d24e807c07d9fc1de57, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e947dbcf3c78db04084f95cadff4922b, type: 2}
+  - {fileID: 7400000, guid: b332188106b62d24e807c07d9fc1de57, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
