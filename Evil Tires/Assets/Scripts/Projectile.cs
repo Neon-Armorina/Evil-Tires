@@ -5,8 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    public GameObject BossCar;
-
     private Camera cam;
 
     private void Awake()
@@ -24,6 +22,10 @@ public class Projectile : MonoBehaviour
         GameObject go = other.gameObject;
         Destroy(gameObject);
         if (go.tag.Equals("BossTire"))
+        {
+            Destroy(go);
+        }
+        if (go.tag.Equals("Zombie"))
         {
             Destroy(go);
         }

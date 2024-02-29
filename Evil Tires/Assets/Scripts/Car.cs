@@ -30,10 +30,6 @@ public class Car : MonoBehaviour
     void Update()
     {
         MovementHandler();
-        if (transform.childCount == 1)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     void FixedUpdate()

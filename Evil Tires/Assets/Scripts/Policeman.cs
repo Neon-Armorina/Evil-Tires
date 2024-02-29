@@ -102,16 +102,20 @@ public class Policeman : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject go = collision.gameObject;
-        if (go.tag.Equals("Tire") && !tireCarrying) {
+        if (go.tag.Equals("Tire") && !tireCarrying)
+        {
             Destroy(go);
             tireCarrying = true;
-        } else if (go.tag.Equals("Car") && tireCarrying) {
+        }
+        else if (go.tag.Equals("Car") && tireCarrying)
+        {
             tireCarrying = false;
             go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
+            Debug.Log(tireNumber);
             if (tireNumber == 4)
             {
-                go.SetActive(false);
-                BossCar.SetActive(true);
+                go.transform.parent.gameObject.SetActive(false);
+                Invoke("SpawnDelay", 3);
             }
         }
     }
@@ -120,11 +124,17 @@ public class Policeman : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
 
-        while(stamina < maxStamina) {
+        while (stamina < maxStamina)
+        {
             stamina += chargeRate / 10f;
             if (stamina > maxStamina) stamina = maxStamina;
             StaminaBar.fillAmount = stamina / maxStamina;
             yield return new WaitForSeconds(.1f);
         }
+    }
+
+    void SpawnDelay()
+    {
+        BossCar.SetActive(true);
     }
 }
