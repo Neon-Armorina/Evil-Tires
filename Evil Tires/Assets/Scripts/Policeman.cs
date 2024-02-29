@@ -14,6 +14,7 @@ public class Policeman : MonoBehaviour
     public Image StaminaBar;
     public float chargeRate;
     public Camera cam;
+    public GameObject BossCar;
 
     [Header("Set Dynamically")]
     public float stamina;
@@ -23,7 +24,7 @@ public class Policeman : MonoBehaviour
     private Rigidbody2D rigid;
     private Coroutine recharge;
     private Vector2 moveDirection;
-    private int tireNumber = 1;
+    private int tireNumber = 0;
 
     Vector2 mousePos;
 
@@ -102,11 +103,16 @@ public class Policeman : MonoBehaviour
     {
         GameObject go = collision.gameObject;
         if (go.tag.Equals("Tire") && !tireCarrying) {
-            Destroy(collision.gameObject);
+            Destroy(go);
             tireCarrying = true;
         } else if (go.tag.Equals("Car") && tireCarrying) {
             tireCarrying = false;
             go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
+            if (tireNumber == 4)
+            {
+                go.SetActive(false);
+                BossCar.SetActive(true);
+            }
         }
     }
 
