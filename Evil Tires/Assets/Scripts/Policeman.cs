@@ -18,10 +18,12 @@ public class Policeman : MonoBehaviour
     [Header("Set Dynamically")]
     public float stamina;
     public bool running = false;
+    public bool tireCarrying = false;
 
     private Rigidbody2D rigid;
     private Coroutine recharge;
     private Vector2 moveDirection;
+    private int tireNumber = 1;
 
     Vector2 mousePos;
 
@@ -49,7 +51,7 @@ public class Policeman : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX, moveY);
+        moveDirection = new Vector2(moveX, moveY).normalized;
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
@@ -94,6 +96,18 @@ public class Policeman : MonoBehaviour
         Vector2 lookDir = mousePos - rigid.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rigid.rotation = angle;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go.tag.Equals("Tire") && !tireCarrying) {
+            Destroy(collision.gameObject);
+            tireCarrying = true;
+        } else if (go.tag.Equals("Car") && tireCarrying) {
+            tireCarrying = false;
+            go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
+        }
     }
 
     private IEnumerator RechargeStamina()
