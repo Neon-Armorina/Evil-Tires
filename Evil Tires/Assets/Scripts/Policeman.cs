@@ -107,6 +107,7 @@ public class Policeman : MonoBehaviour
         } else if (go.tag.Equals("Car") && tireCarrying) {
             tireCarrying = false;
             go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
+
         }
     }
 
