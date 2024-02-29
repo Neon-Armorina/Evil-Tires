@@ -9,6 +9,7 @@ TagManager:
   - PlacedTire
   - BossTire
   - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
