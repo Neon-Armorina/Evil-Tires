@@ -23,6 +23,7 @@ public class Policeman : MonoBehaviour
     private Rigidbody2D rigid;
     private Coroutine recharge;
     private Vector2 moveDirection;
+    private int tireNumber = 1;
 
     Vector2 mousePos;
 
@@ -99,10 +100,13 @@ public class Policeman : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Tire") && !tireCarrying)
-        {
+        GameObject go = collision.gameObject;
+        if (go.tag.Equals("Tire") && !tireCarrying) {
             Destroy(collision.gameObject);
             tireCarrying = true;
+        } else if (go.tag.Equals("Car") && tireCarrying) {
+            tireCarrying = false;
+            go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
         }
     }
 
