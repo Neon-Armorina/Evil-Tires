@@ -8,6 +8,7 @@ TagManager:
   - Car
   - PlacedTire
   - BossTire
+  - Zombie
   layers:
   - Default
   - TransparentFX

@@ -27,6 +27,10 @@ public class Projectile : MonoBehaviour
         {
             Destroy(go);
         }
+        if (go.tag.Equals("Zombie"))
+        {
+            Destroy(go);
+        }
     }
 
     private void DestroyWhenOffScreen()
