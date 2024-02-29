@@ -19,11 +19,12 @@ public class Car : MonoBehaviour
     void Start()
     {
         carRb = GetComponent<Rigidbody2D>();
-        moveDir = Random.Range(1, 5); // 1-4  -- 1=down 2=left 3=right 4=up
-        if (moveDir < 1 || moveDir > 4)
-        {
-            while (moveDir < 1 || moveDir > 4) { moveDir = Random.Range(1, 5); }
-        }
+        //moveDir = Random.Range(1, 5); // 1-4  -- 1=down 2=left 3=right 4=up
+        moveDir = 4;
+        //if (moveDir < 1 || moveDir > 4)
+        //{
+        //    while (moveDir < 1 || moveDir > 4) { moveDir = Random.Range(1, 5); }
+        //}
         canChange = true;
     }
 
