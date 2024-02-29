@@ -19,7 +19,10 @@ public class Zombie : MonoBehaviour
 
     void Update()
     {
-        transform.up = (policeman.transform.position - transform.position).normalized;
-        rigid.velocity = transform.up * speed;
+        if (policeman != null)
+        {
+            transform.up = (policeman.transform.position - transform.position).normalized;
+            rigid.velocity = transform.up * speed;
+        }
     }
 }
