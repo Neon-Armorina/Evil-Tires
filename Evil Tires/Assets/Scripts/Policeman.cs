@@ -20,6 +20,7 @@ public class Policeman : MonoBehaviour
     public Camera cam;
     public GameObject BossCar;
     public GameObject Car;
+    public GameObject TireUI;
     public AudioSource pickUpSound;
     public TextMeshProUGUI objText;
 
@@ -116,10 +117,12 @@ public class Policeman : MonoBehaviour
             pickUpSound.Play();
             Destroy(go);
             tireCarrying = true;
+            TireUI.SetActive(true);
         }
         else if (go.tag.Equals("PlacedTire") && tireCarrying)
         {
             tireCarrying = false;
+            TireUI.SetActive(false);
             tireNumber--;
             objText.text = "- Find " + tireNumber + " tires for your car";
             Destroy(go);

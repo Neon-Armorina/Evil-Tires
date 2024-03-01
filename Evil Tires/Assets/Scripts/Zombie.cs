@@ -44,6 +44,8 @@ public class Zombie : MonoBehaviour
 
         if (go.tag.Equals("Policeman"))
         {
+            if (Time.time - lastAttackTime < attackCooldown / 2) return;
+
             lastAttackTime = Time.time;
             AudioSource.PlayClipAtPoint(biteClip, transform.position, volumeBite);
             policeman.health -= damage;
