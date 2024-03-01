@@ -8,11 +8,13 @@ public class Zombie : MonoBehaviour
     private Policeman policeman;
     private float speed;
     private float damage;
+    private float lastAttackTime;
 
     public float baseSpeed;
     public AudioClip biteClip;
     public float baseDamage;
     public float volumeBite;
+    public float attackCooldown;
 
     void Start()
     {
@@ -41,11 +43,38 @@ public class Zombie : MonoBehaviour
 
         if (go.tag.Equals("Policeman"))
         {
+            lastAttackTime = Time.time;
             AudioSource.PlayClipAtPoint(biteClip, transform.position, volumeBite);
             policeman.health -= damage;
             policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
             if (policeman.health <= 0) Destroy(go);
         }
 
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go.tag == "Policeman")
+        {
+            if (Time.time - lastAttackTime < attackCooldown) return;
+
+            // CompareTag is cheaper than .tag ==
+            if (collision.gameObject.CompareTag("Policeman"))
+            {
+                AudioSource.PlayClipAtPoint(biteClip, transform.position, volumeBite);
+                policeman.health -= damage;
+                policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
+
+                policeman.health = (policeman.health - damage);
+                if (policeman.health <= 0)
+                {
+                    Destroy(go);
+                    return;
+                }
+                // Remember that we recently attacked.
+                lastAttackTime = Time.time;
+            }
+        }
     }
 }
