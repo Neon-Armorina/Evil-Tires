@@ -8,14 +8,12 @@ public class Car : MonoBehaviour
     public float carSpeed = 0.2f;
     public float smoothRotate = 10.0f;
     public float damage;
-    private float lastAttackTime;
 
     private Rigidbody2D carRb;
     private Policeman policeman;
     private int moveDir;
     private int curDir;
     private bool canChange;
-    public float attackCooldown;
     private Vector2 moveDirection = Vector2.up;
 
 
@@ -135,30 +133,10 @@ public class Car : MonoBehaviour
         }
         if (go.tag == "Policeman")
         {
-            lastAttackTime = Time.time;
             policeman.health -= damage;
             if (policeman.health < 0) policeman.health = 0;
             policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
             if (policeman.health <= 0) Destroy(go);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        GameObject go = collision.gameObject;
-        if (go.tag == "Policeman")
-        {
-            if (Time.time - lastAttackTime < attackCooldown) return;
-
-            if (collision.gameObject.CompareTag("Policeman"))
-            {
-                policeman.health -= damage;
-                if (policeman.health < 0) policeman.health = 0;
-                policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
-                if (policeman.health <= 0) Destroy(go);
-
-                lastAttackTime = Time.time;
-            }
         }
     }
 
