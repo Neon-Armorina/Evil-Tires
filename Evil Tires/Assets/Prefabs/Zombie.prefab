@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 1
-  biteClip: {fileID: 8300000, guid: 6bdd121a33c34e2489de70cce3d3d3d7, type: 3}
+  biteClip: {fileID: 8300000, guid: 4ee84610309280c479bf11692d079783, type: 3}
   baseDamage: 25
   volumeBite: 1
 --- !u!70 &3361298060351641796
