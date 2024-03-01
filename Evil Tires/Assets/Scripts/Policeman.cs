@@ -15,7 +15,6 @@ public class Policeman : MonoBehaviour
     public float chargeRate;
     public Camera cam;
     public GameObject BossCar;
-    public AudioSource biteSound;
 
     [Header("Set Dynamically")]
     public float stamina;
@@ -121,7 +120,6 @@ public class Policeman : MonoBehaviour
         }
         else if (go.tag.Equals("Zombie"))
         {
-            biteSound.Play();
             Die();
         }
     }
@@ -146,6 +144,6 @@ public class Policeman : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        
     }
 }

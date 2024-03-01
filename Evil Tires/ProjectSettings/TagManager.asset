@@ -13,6 +13,7 @@ TagManager:
   - Obstacles
   - Zombie
   - BossCar
+  - Policeman
   layers:
   - Default
   - TransparentFX

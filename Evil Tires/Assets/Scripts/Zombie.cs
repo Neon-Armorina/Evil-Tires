@@ -9,6 +9,7 @@ public class Zombie : MonoBehaviour
     private float speed;
 
     public float BaseSpeed;
+    public AudioSource biteSound;
 
     void Start()
     {
@@ -33,5 +34,11 @@ public class Zombie : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (go.tag.Equals("Policeman"))
+        {
+            biteSound.Play();
+        }
+
     }
 }
