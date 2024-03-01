@@ -19,6 +19,7 @@ public class Policeman : MonoBehaviour
     public Camera cam;
     public GameObject BossCar;
     public GameObject Car;
+    public AudioSource pickUpSound;
 
     [Header("Set Dynamically")]
     public float stamina;
@@ -110,6 +111,7 @@ public class Policeman : MonoBehaviour
         GameObject go = collision.gameObject;
         if (go.tag.Equals("Tire") && !tireCarrying)
         {
+            pickUpSound.Play();
             Destroy(go);
             tireCarrying = true;
         }
@@ -118,7 +120,6 @@ public class Policeman : MonoBehaviour
             tireCarrying = false;
             tireNumber++;
             Destroy(go);
-            Debug.Log(tireNumber);
             if (tireNumber == 4)
             {
                 Destroy(Car);
