@@ -135,7 +135,9 @@ public class Car : MonoBehaviour
         }
         if (go.tag == "Policeman")
         {
+            lastAttackTime = Time.time;
             policeman.health -= damage;
+            if (policeman.health < 0) policeman.health = 0;
             policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
             if (policeman.health <= 0) Destroy(go);
         }
@@ -148,19 +150,13 @@ public class Car : MonoBehaviour
         {
             if (Time.time - lastAttackTime < attackCooldown) return;
 
-            // CompareTag is cheaper than .tag ==
             if (collision.gameObject.CompareTag("Policeman"))
             {
                 policeman.health -= damage;
+                if (policeman.health < 0) policeman.health = 0;
                 policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
+                if (policeman.health <= 0) Destroy(go);
 
-                policeman.health = (policeman.health - damage);
-                if (policeman.health <= 0)
-                {
-                    Destroy(go);
-                    return;
-                }
-                // Remember that we recently attacked.
                 lastAttackTime = Time.time;
             }
         }
