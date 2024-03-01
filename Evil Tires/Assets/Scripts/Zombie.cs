@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Zombie : MonoBehaviour
 {
@@ -66,10 +67,18 @@ public class Zombie : MonoBehaviour
                 policeman.health -= damage;
                 if (policeman.health < 0) policeman.health = 0;
                 policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
-                if (policeman.health <= 0) Destroy(go);
-
+                if (policeman.health <= 0)
+                {
+                    ChangeScenes(0);
+                    Destroy(go);
+                }
                 lastAttackTime = Time.time;
             }
         }
+    }
+
+    public void ChangeScenes(int numberScenes)
+    {
+        SceneManager.LoadScene(numberScenes);
     }
 }
