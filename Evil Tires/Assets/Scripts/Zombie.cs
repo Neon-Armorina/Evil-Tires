@@ -7,14 +7,17 @@ public class Zombie : MonoBehaviour
     private Rigidbody2D rigid;
     private Policeman policeman;
     private float speed;
+    private float damage;
 
-    public float BaseSpeed;
+    public float baseSpeed;
     public AudioSource biteSound;
+    public float baseDamage;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        speed = BaseSpeed * (1 + Random.Range(-0.1f, 0.1f));
+        speed = baseSpeed * (1 + Random.Range(-0.1f, 0.1f));
+        damage = baseDamage * (1 + Random.Range(-0.1f, 0.1f));
         policeman = FindObjectOfType<Policeman>();
     }
 
@@ -38,6 +41,9 @@ public class Zombie : MonoBehaviour
         if (go.tag.Equals("Policeman"))
         {
             biteSound.Play();
+            policeman.health -= damage;
+            policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
+            if (policeman.health <= 0) Destroy(go);
         }
 
     }

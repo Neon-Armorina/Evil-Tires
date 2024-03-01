@@ -7,8 +7,10 @@ public class Car : MonoBehaviour
     [Header("Set in Inspector: BossCar")]
     public float carSpeed = 0.2f;
     public float smoothRotate = 10.0f;
+    public float damage;
 
     private Rigidbody2D carRb;
+    private Policeman policeman;
     private int moveDir;
     private int curDir;
     private bool canChange;
@@ -25,11 +27,13 @@ public class Car : MonoBehaviour
         //    while (moveDir < 1 || moveDir > 4) { moveDir = Random.Range(1, 5); }
         //}
         canChange = true;
+        policeman = FindObjectOfType<Policeman>();
     }
 
     void Update()
     {
-        MovementHandler();
+        if (policeman != null)
+            MovementHandler();
     }
 
     void FixedUpdate()
@@ -121,10 +125,17 @@ public class Car : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Obstacles")
+        GameObject go = collision.gameObject;
+        if (go.tag == "Wall" || go.tag == "Obstacles")
         {
             StopMoving();
             ChangeDirection();
+        }
+        if (go.tag == "Policeman")
+        {
+            policeman.health -= damage;
+            policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
+            if (policeman.health <= 0) Destroy(go);
         }
     }
 

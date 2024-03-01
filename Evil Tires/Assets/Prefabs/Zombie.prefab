@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8ec923506c28b44a31b8a29fad3f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseSpeed: 1
+  baseSpeed: 1
   biteSound: {fileID: 4956966127409388927}
+  baseDamage: 25
 --- !u!70 &3361298060351641796
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

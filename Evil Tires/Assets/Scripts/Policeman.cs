@@ -13,16 +13,21 @@ public class Policeman : MonoBehaviour
     public float maxStamina;
     public Image StaminaBar;
     public float chargeRate;
+    public Image HealthBar;
+    public float regenRate;
+    public float maxHealth;
     public Camera cam;
     public GameObject BossCar;
 
     [Header("Set Dynamically")]
     public float stamina;
+    public float health;
     public bool running = false;
     public bool tireCarrying = false;
 
     private Rigidbody2D rigid;
     private Coroutine recharge;
+    private Coroutine regen;
     private Vector2 moveDirection;
     private int tireNumber = 0;
 
@@ -118,9 +123,10 @@ public class Policeman : MonoBehaviour
                 Invoke("SpawnDelay", 3);
             }
         }
-        else if (go.tag.Equals("Zombie"))
+        if (go.tag.Equals("Zombie") || go.tag.Equals("Bosscar"))
         {
-            Die();
+            if (regen != null) StopCoroutine(regen);
+            regen = StartCoroutine(RegenHealth());
         }
     }
 
@@ -137,13 +143,21 @@ public class Policeman : MonoBehaviour
         }
     }
 
+    private IEnumerator RegenHealth()
+    {
+        yield return new WaitForSeconds(3f);
+
+        while (health < maxHealth)
+        {
+            health += regenRate / 10f;
+            if (health > maxHealth) health = maxHealth;
+            HealthBar.fillAmount = health / maxHealth;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
     void SpawnDelay()
     {
         BossCar.SetActive(true);
-    }
-
-    public void Die()
-    {
-        
     }
 }
