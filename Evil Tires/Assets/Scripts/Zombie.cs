@@ -10,8 +10,9 @@ public class Zombie : MonoBehaviour
     private float damage;
 
     public float baseSpeed;
-    public AudioSource biteSound;
+    public AudioClip biteClip;
     public float baseDamage;
+    public float volumeBite;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class Zombie : MonoBehaviour
 
         if (go.tag.Equals("Policeman"))
         {
-            biteSound.Play();
+            AudioSource.PlayClipAtPoint(biteClip, transform.position, volumeBite);
             policeman.health -= damage;
             policeman.HealthBar.fillAmount = policeman.health / policeman.maxHealth;
             if (policeman.health <= 0) Destroy(go);
