@@ -81,6 +81,6 @@ public class Zombie : MonoBehaviour
 
     public void ChangeScenes(int numberScenes)
     {
-        SceneManager.LoadScene(numberScenes);
+        SceneManager.LoadScene(0);
     }
 }

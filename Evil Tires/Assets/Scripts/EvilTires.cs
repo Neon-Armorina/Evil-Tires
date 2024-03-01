@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EvilTires : MonoBehaviour
@@ -16,6 +17,7 @@ public class EvilTires : MonoBehaviour
         {
             objText.transform.parent.gameObject.SetActive(false);
             Destroy(this.gameObject);
+            SceneManager.LoadScene(2);
             enabled = false;
         }
     }
