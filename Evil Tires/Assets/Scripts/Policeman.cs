@@ -18,6 +18,7 @@ public class Policeman : MonoBehaviour
     public float maxHealth;
     public Camera cam;
     public GameObject BossCar;
+    public GameObject Car;
 
     [Header("Set Dynamically")]
     public float stamina;
@@ -112,14 +113,15 @@ public class Policeman : MonoBehaviour
             Destroy(go);
             tireCarrying = true;
         }
-        else if (go.tag.Equals("Car") && tireCarrying)
+        else if (go.tag.Equals("PlacedTire") && tireCarrying)
         {
             tireCarrying = false;
-            go.transform.GetChild(tireNumber++).gameObject.SetActive(true);
+            tireNumber++;
+            Destroy(go);
             Debug.Log(tireNumber);
             if (tireNumber == 4)
             {
-                go.transform.parent.gameObject.SetActive(false);
+                Destroy(Car);
                 Invoke("SpawnDelay", 3);
             }
         }
