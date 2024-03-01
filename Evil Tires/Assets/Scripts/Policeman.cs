@@ -141,6 +141,16 @@ public class Policeman : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go.tag == "Zombie")
+        {
+            if (regen != null) StopCoroutine(regen);
+            regen = StartCoroutine(RegenHealth());
+        }
+    }
+
     private IEnumerator RechargeStamina()
     {
         yield return new WaitForSeconds(3f);
