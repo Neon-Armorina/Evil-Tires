@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class Policeman : MonoBehaviour
     public GameObject BossCar;
     public GameObject Car;
     public AudioSource pickUpSound;
+    public TextMeshProUGUI objText;
 
     [Header("Set Dynamically")]
     public float stamina;
@@ -31,7 +33,7 @@ public class Policeman : MonoBehaviour
     private Coroutine recharge;
     private Coroutine regen;
     private Vector2 moveDirection;
-    private int tireNumber = 0;
+    private int tireNumber = 4;
 
     Vector2 mousePos;
 
@@ -118,12 +120,15 @@ public class Policeman : MonoBehaviour
         else if (go.tag.Equals("PlacedTire") && tireCarrying)
         {
             tireCarrying = false;
-            tireNumber++;
+            tireNumber--;
+            objText.text = "- Find " + tireNumber + " tires for your car";
             Destroy(go);
-            if (tireNumber == 4)
+            if (tireNumber == 0)
             {
+                objText.transform.parent.gameObject.SetActive(false);
                 Destroy(Car);
                 Invoke("SpawnDelay", 3);
+                objText.text = "Shoot the tires!";
             }
         }
         if (go.tag.Equals("Zombie") || go.tag.Equals("Bosscar"))
@@ -162,5 +167,6 @@ public class Policeman : MonoBehaviour
     void SpawnDelay()
     {
         BossCar.SetActive(true);
+        objText.transform.parent.gameObject.SetActive(true);
     }
 }
